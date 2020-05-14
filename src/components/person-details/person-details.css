@@ -1,0 +1,13 @@
+.person-details {
+    display: flex;
+    margin-right: 5px;
+}
+
+.person-details img {
+    height: 150px;
+    width: 150px;
+}
+
+.card-body {
+    padding-top: 0;
+}

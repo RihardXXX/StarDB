@@ -10,9 +10,11 @@ export default class SwapiService {
         return  res.json();
     }
 
-    async getPeople(){
-        const people = await this.getResourse(`people/`);
-        return people.results.map(this.transformPerson);
+    async getAllPeople(){
+        const res = await this.getResourse(`people/`);
+        return res.results
+            .map(this.transformPerson)
+            .slice(0, 10);
     }
 
     async getPerson(id){
@@ -45,7 +47,7 @@ export default class SwapiService {
         return item.url.match(idRegExp)[1];
     }
 
-    transformPlanet(planet){
+    transformPlanet = (planet) => {
         return {
             id: this.extractId(planet),
             name: planet.name,
@@ -53,9 +55,9 @@ export default class SwapiService {
             rotationPeriod: planet.rotation_period,
             diameter: planet.diameter,
         }
-    }
+    };
 
-    transformStarship(starShip){
+    transformStarship = (starShip) => {
         return {
             id: this.extractId(starShip),
             name: starShip.name,
@@ -67,15 +69,15 @@ export default class SwapiService {
             passengers: starShip.passengers,
             cargoCapacity: starShip.cargoCapacity
         }
-    }
+    };
 
-    transformPerson(person){
+    transformPerson = (person) => {
         return {
             id: this.extractId(person),
             name: person.name,
             gender: person.gender,
-            birthYear: person.birthYear,
-            eyeColor: person.eyeColor
+            birthYear: person.birth_year,
+            eyeColor: person.eye_color
         }
     }
 }

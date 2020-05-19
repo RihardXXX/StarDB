@@ -1,3 +1,9 @@
 ul {
     margin-left: 5px;
 }
+
+.list-group-item:hover{
+    background-color: #6c6b6b;
+    color: white;
+    cursor: pointer;
+}
